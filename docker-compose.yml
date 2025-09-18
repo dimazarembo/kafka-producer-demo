@@ -19,5 +19,6 @@ services:
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://<IP_ТВОЕГО_СЕРВЕРА>:9092
       - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_NUM_PARTITIONS=3
     depends_on:
       - zookeeper

@@ -8,9 +8,15 @@ import org.springframework.stereotype.Service;
 public class OrderService {
     private static final Logger log = LoggerFactory.getLogger(OrderService.class);
 
+    private final OrderKafkaProducer orderKafkaProducer;
+
+    public OrderService(OrderKafkaProducer orderKafkaProducer) {
+        this.orderKafkaProducer = orderKafkaProducer;
+    }
+
     public void saveOrder(Order orderToSave) {
         //saving to DB...
-        //send to kafka
+        orderKafkaProducer.sendOrderToKafka(orderToSave);
         log.info("Order successfully saved: id={}", orderToSave.orderId());
     }
 }
